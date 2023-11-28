@@ -1,0 +1,34 @@
+{%extends 'owner/base.html'%}
+{%block bodyblock%}
+{%load static%}
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            {%if categories%}
+            <table class="table">
+                <tr>
+                    <th>Category</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+                {%for category in categories%}
+                <tr>
+                    <td>{{category.cat_name}}</td>
+                    <td>{{category.is_active}}</td>
+                    <td><a href="{%url 'category_products' category.id%}" >view products</a></td>
+                </tr>
+                {%endfor%}
+
+            </table>
+            {%else%}
+            <h4>No Items...</h4>
+            {%endif%}
+            <a href="{%url 'dashboard'%}" class="btn btn-warning">Go back</a>
+            <a href="{%url 'category_add'%}" class="btn btn-info">Create</a>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
+{%endblock%}

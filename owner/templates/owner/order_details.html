@@ -1,0 +1,51 @@
+{%extends 'owner/base.html'%}
+{%block bodyblock%}
+{%load static%}
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="card" style="width: 18rem;">
+        {%if product.image%}
+        <img class="card-img-top" src="{{product.image.url}}" alt="..." />  
+    {%else%}
+        <img class="card-img-top" src="{%static 'assets/no_image.jpg'%}" alt="..." />
+    {%endif%}
+    <div class="card-body">
+                      <h5 class="card-title">{{order.product.pro_name}}</h5>
+                      <p class="card-text">{{order.product.description}}</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item"><strong>Address: </strong>{{order.address}}</li>
+                      <li class="list-group-item"><strong>Customer: </strong>{{order.user}}</li>
+                      <li class="list-group-item"><strong>Qty: </strong>{{order.quantity}}</li>
+                      <li class="list-group-item"><strong>status: </strong>{{order.status}}</li>
+                    </ul>
+                    <div class="card-body">
+                      <a href="#" class="card-link">Card link</a>
+                      <a href="#" class="card-link">Another link</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-2">
+                  <form action="" method="post">
+                    {%csrf_token%}
+                    {{form.as_p}}
+                    <input type="submit" value="Update" class="btn btn-info">
+                    <p></p>
+                      {%if order.status == 'order_placed'%}
+                      <a href="{%url 'recent_orders'%}" class="btn btn-warning">Go back</a>
+                      {%elif order.status == 'dispatched'%}
+                      <a href="{%url 'dispatched'%}" class="btn btn-warning">Go back</a>
+                      {%elif order.status == 'in_transit'%}
+                      <a href="{%url 'intransited'%}" class="btn btn-warning">Go back</a>
+                      {%elif order.status == 'delivered'%}
+                      <a href="{%url 'delivered'%}" class="btn btn-warning">Go back</a>
+                      {%endif%}
+                  </form>
+                </div>
+              </div>
+            </div>
+            
+            {%endblock%}
+            

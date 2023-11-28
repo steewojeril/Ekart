@@ -1,0 +1,54 @@
+{%extends 'owner/base.html'%}
+{%block bodyblock%}
+{%load static%}
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            {%if category_products%}
+            <a href="{%url 'category_list'%}" class="btn btn-info">Go back</a>
+            <a href="{%url 'add_product' category_inst%}" class="btn btn-info">Add Product</a>
+            {%else%}
+            <a href="{%url 'dashboard'%}" class="btn btn-info">Go back</a>
+            {%endif%}
+
+            {%if products%}
+            <table class="table">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Description</th>
+                    <th>image</th>
+                    <th>Action</th>
+                </tr>
+                {%for product in products%}
+                <tr>
+                    <td>{{product.pro_name}}</td>
+                    <td>{{product.category.cat_name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.description}}</td>
+                {%if product.image%}
+                <td>
+                    <img class="img" src="{{product.image.url}}" alt="..." width="20%" height="20%"/>  
+                </td>
+                {%else%}
+                <td>
+                    <img class="img" src="{%static 'assets/no_image.jpg'%}" alt="..." width="20%" height="20%"/>
+                </td>
+                {%endif%}
+                
+                <td><a href="{%url 'product_detail' product.id%}">View</a></td>
+                </tr>
+                {%endfor%}
+
+            </table>
+            {%else%}
+            <h4>No Items...</h4>
+            {%endif%}
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
+{%endblock%}

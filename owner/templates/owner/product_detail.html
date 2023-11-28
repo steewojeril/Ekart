@@ -1,0 +1,36 @@
+{%extends 'owner/base.html'%}
+{%block bodyblock%}
+{%load static%}
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <div class="col mb-5">
+            <div class="card h-100">
+                <!-- Product image-->
+            {%if product.image%}
+                <img class="card-img-top" src="{{product.image.url}}" alt="..." />  
+            {%else%}
+                <img class="card-img-top" src="{%static 'assets/no_image.jpg'%}" alt="..." />
+            {%endif%}
+
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">{{product.pro_name| capfirst}}</h5>
+                        <!-- Product price-->
+                        {{product.price}} &#8377;
+                        <p>Description:{{product.description}}</p>
+                        <p>category: {{product.category}}</p>
+                    </div>
+                </div>
+                <!-- Product actions-->
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-4">
+</div>
+</div>
+
+{%endblock%}

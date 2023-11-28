@@ -1,0 +1,36 @@
+{%extends 'owner/base.html'%}
+{%block bodyblock%}
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            {%if orders%}
+            <table class="table">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Category</th>
+                    <th>User</th>
+                    <th>Created Date</th>
+                    <th>Status</th>
+                </tr>
+                {%for order in orders%}
+                <tr>
+                    <td>{{order.product.pro_name}}</td>
+                    <td>{{order.product.category.cat_name}}</td>
+                    <td>{{order.user}}</td>
+                    <td>{{order.created_date}}</td>
+                    <td>{{order.status}}</td>
+                    
+                </tr>
+                {%endfor%}
+            </table>
+            {%else%}
+            <h4>No Items...</h4>
+            {%endif%}
+            <a href="{%url 'dashboard'%}" class="btn btn-info">Go back</a>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
+{%endblock%}

@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+{%block body_block%}
+{%load static%}
+
+{%if orders%}
+{%for order in orders%}
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-3">
+        <div class="col mb-5">
+            <div class="card h-100">
+                <!-- Product image-->
+                {%if order.product.image%}
+                <img class="card-img-top" src="{{order.product.image.url}}" alt="..." />  
+            {%else%}
+                <img class="card-img-top" src="{%static 'assets/no_image.jpg'%}" alt="..." />
+            {%endif%}
+
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">{{order.product.pro_name| capfirst}}</h5>
+                        <!-- Product price-->
+                        {{order.product.price}} &#8377;
+                    </div>
+                </div>
+                <!-- Product actions-->
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-3">
+        <span>Qty:<span>
+        <span>{{order.quantity}}</span>
+        <p>Created Date:{{order.created_date|date:"D d M Y"}}</p>
+        <p>Status:{{order.status}}</p>
+        {%if order.status == "delivered"%}
+            <a href="" class="btn btn-info">return order</a>
+        {%else%}
+            <a href="{%url 'updateorder' order.id%}" class="btn btn-warning">Cancel order</a>
+        {%endif%}
+    </div>
+    <div class="col-3"></div>
+</div>
+{%endfor%}
+{%else%}
+<h2>No Orders!!!</h2>
+<a href="{%url 'home'%}" class="btn btn-warning">Buy</a>
+{%endif%}
+
+{%endblock%}
