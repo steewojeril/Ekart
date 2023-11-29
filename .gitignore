@@ -1,3 +1,6 @@
+# images folder-stores images uploaded by user
+images/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
