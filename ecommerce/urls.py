@@ -30,4 +30,4 @@ urlpatterns = [
     path('token/refresh',TokenRefreshView.as_view()),
     # path('token',obtain_auth_token)
     
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #if this is not given images uploaded by the user will ot vsible
